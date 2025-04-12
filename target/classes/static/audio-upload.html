@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Record and Upload Audio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    audio {
+      display: block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h2>Record Your Audio</h2>
+
+  <button id="startBtn">Start Recording</button>
+  <button id="stopBtn" disabled>Stop Recording</button>
+  <button id="rerecordBtn" disabled>Re-record</button>
+  <button id="uploadBtn" disabled>Upload</button>
+
+  <audio id="audioPlayer" controls></audio>
+
+  <script>
+    let mediaRecorder;
+    let audioChunks = [];
+    let audioBlob;
+
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const rerecordBtn = document.getElementById('rerecordBtn');
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    startBtn.onclick = async () => {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+
+      audioChunks = [];
+      mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
+
+      mediaRecorder.onstop = () => {
+        audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        audioPlayer.src = audioUrl;
+
+        uploadBtn.disabled = false;
+        rerecordBtn.disabled = false;
+      };
+
+      mediaRecorder.start();
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+      uploadBtn.disabled = true;
+      rerecordBtn.disabled = true;
+    };
+
+    stopBtn.onclick = () => {
+      mediaRecorder.stop();
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+    };
+
+    rerecordBtn.onclick = () => {
+      audioPlayer.src = '';
+      uploadBtn.disabled = true;
+      rerecordBtn.disabled = true;
+    };
+
+    uploadBtn.onclick = async () => {
+      const formData = new FormData();
+      formData.append("file", audioBlob, "recording.webm");
+
+      const response = await fetch('/api/audio/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+      alert("Upload successful:\n" + JSON.stringify(result, null, 2));
+    };
+  </script>
+</body>
+</html>

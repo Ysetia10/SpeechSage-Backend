@@ -1,0 +1,6 @@
+com/speechsage/repository/AudioAnalysisRepository.class
+main/java/com/speechsage/utils/SynonymReplacer.class
+com/speechsage/controller/AudioAnalysisController.class
+com/speechsage/model/AudioAnalysisResult.class
+com/speechsage/service/AudioAnalysisService.class
+com/speechsage/SpeechSageApplication.class
