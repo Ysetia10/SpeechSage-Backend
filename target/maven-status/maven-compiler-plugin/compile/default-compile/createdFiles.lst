@@ -4,3 +4,4 @@ com/speechsage/controller/AudioAnalysisController.class
 com/speechsage/model/AudioAnalysisResult.class
 com/speechsage/service/AudioAnalysisService.class
 com/speechsage/SpeechSageApplication.class
+com/speechsage/config/WebConfig.class
