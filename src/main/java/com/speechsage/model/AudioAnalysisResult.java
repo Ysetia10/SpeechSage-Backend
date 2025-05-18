@@ -4,38 +4,61 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "audio_analysis_result")
 public class AudioAnalysisResult {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "file_name")
     private String fileName;
 
-    private String analysisResult;
+    @Column(name = "analysis_result", columnDefinition = "TEXT")
+    private String transcription;
 
+    @Column(name = "uploaded_at")
     private LocalDateTime uploadedAt;
 
+    // Constructors
     public AudioAnalysisResult() {}
 
-    public AudioAnalysisResult(String fileName, String analysisResult, LocalDateTime uploadedAt) {
+    public AudioAnalysisResult(String fileName, String transcription, LocalDateTime uploadedAt) {
         this.fileName = fileName;
-        this.analysisResult = analysisResult;
+        this.transcription = transcription;
         this.uploadedAt = uploadedAt;
     }
 
     // Getters and Setters
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getFileName() { return fileName; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public void setFileName(String fileName) { this.fileName = fileName; }
+    public String getFileName() {
+        return fileName;
+    }
 
-    public String getAnalysisResult() { return analysisResult; }
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-    public void setAnalysisResult(String analysisResult) { this.analysisResult = analysisResult; }
+    public String getTranscription() {
+        return transcription;
+    }
 
-    public LocalDateTime getUploadedAt() { return uploadedAt; }
+    public void setTranscription(String transcription) {
+        this.transcription = transcription;
+    }
 
-    public void setUploadedAt(LocalDateTime uploadedAt) { this.uploadedAt = uploadedAt; }
+    public LocalDateTime getUploadedAt() {
+        return uploadedAt;
+    }
+
+    public void setUploadedAt(LocalDateTime uploadedAt) {
+        this.uploadedAt = uploadedAt;
+    }
 }
