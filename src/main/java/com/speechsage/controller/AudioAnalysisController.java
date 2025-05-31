@@ -34,14 +34,14 @@ public class AudioAnalysisController {
         }
     }
 
-    @GetMapping("/last")
-    public ResponseEntity<AudioAnalysisResult> getLastAnalysis() {
-        Optional<AudioAnalysisResult> result = service.getLastAnalysis();
-        if (result.isPresent()) {
-            return ResponseEntity.ok(result.get());
-        } else {
-            return ResponseEntity.status(404).build();
-        }
-    }
+//    @GetMapping("/last")
+//    public ResponseEntity<AudioAnalysisResult> getLastAnalysis() {
+//        Optional<AudioAnalysisResult> result = service.getLastAnalysis();
+//        if (result.isPresent()) {
+//            return ResponseEntity.ok(result.get());
+//        } else {
+//            return ResponseEntity.status(404).build();
+//        }
+//    }
 
 }

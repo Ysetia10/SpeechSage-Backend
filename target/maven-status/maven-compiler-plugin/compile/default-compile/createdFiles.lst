@@ -1,4 +1,5 @@
 com/speechsage/repository/AudioAnalysisRepository.class
+com/speechsage/utils/MultipartInputStreamFileResource.class
 main/java/com/speechsage/utils/SynonymReplacer.class
 com/speechsage/controller/AudioAnalysisController.class
 com/speechsage/model/AudioAnalysisResult.class

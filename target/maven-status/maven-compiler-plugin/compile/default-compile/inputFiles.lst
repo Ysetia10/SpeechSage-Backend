@@ -1,5 +1,6 @@
 /Users/yashansetia/SpeechSage-Backend/src/main/java/com/speechsage/model/AudioAnalysisResult.java
 /Users/yashansetia/SpeechSage-Backend/src/main/java/com/speechsage/repository/AudioAnalysisRepository.java
+/Users/yashansetia/SpeechSage-Backend/src/main/java/com/speechsage/utils/MultipartInputStreamFileResource.java
 /Users/yashansetia/SpeechSage-Backend/src/main/java/com/speechsage/utils/SynonymReplacer.java
 /Users/yashansetia/SpeechSage-Backend/src/main/java/com/speechsage/controller/AudioAnalysisController.java
 /Users/yashansetia/SpeechSage-Backend/src/main/java/com/speechsage/service/FluentService.java
